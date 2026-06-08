@@ -358,7 +358,7 @@ nav {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: url("public/swimmer5.jpeg") center/cover no-repeat;
+  background: url("swimmer5.jpeg") center/cover no-repeat;
   filter: brightness(0.35) saturate(1.4);
 }
 /* Dark overlay on top of the bg image */
