@@ -1,0 +1,797 @@
+:root {
+  --bg: #05090f;
+  --surface: #0b1220;
+  --card: #0e1929;
+  --border: rgba(26, 184, 240, 0.12);
+  --text: #f0f6ff;
+  --muted: #5c8aaa;
+  --accent: #1ab8f0;
+  --accent2: #0057a8;
+  --gold: #f0c040;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --bg: #f2f6fc;
+  --surface: #ffffff;
+  --card: #eaf3fb;
+  --border: rgba(26, 184, 240, 0.22);
+  --text: #071523;
+  --muted: #3a6d90;
+  --accent: #0085c7;
+  --gold: #c98a00;
+}
+
+/* ---- 2. RESET ----*/
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Bebas Neue ", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+a {
+  text-decoration: none;
+}
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-title,
+.section-title,
+.plan-name,
+.plan-price,
+.plan-num,
+.nav-logo,
+.footer-logo {
+  font-family: "Bebas Neue ", sans-serif;
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+/* All small label common rakhe hai*/
+.tag,
+.fg label,
+.nav-links a,
+.nav-cta,
+.plan-badge,
+.plan-action,
+.submit-btn,
+.scroll-hint,
+.sliding-item,
+.vis-label,
+.footer-links a {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* All body / description text */
+.hero-sub,
+.section-sub,
+.plan-desc,
+.inquiry-left > p,
+.trust-item,
+.footer-right {
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 0.95rem;
+}
+
+/* All buttons */
+.btn-primary,
+.btn-ghost,
+.nav-cta,
+.plan-action,
+.submit-btn {
+  display: inline-block;
+  padding: 14px 36px;
+  border-radius: 60px;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s,
+    opacity 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+/* Filled (cyan) variant */
+.btn-primary,
+.nav-cta,
+.submit-btn {
+  background: var(--accent);
+  color: #05090f;
+}
+.btn-primary:hover,
+.nav-cta:hover,
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(26, 184, 240, 0.4);
+}
+
+/* Outline variant */
+.btn-ghost,
+.plan-action {
+  background: transparent;
+  border: 1px solid rgba(26, 184, 240, 0.3);
+  color: var(--accent);
+}
+.btn-ghost:hover,
+.plan-action:hover {
+  background: var(--accent);
+  color: #05090f;
+  border-color: var(--accent);
+}
+
+/* Plan card and form card share these */
+.plan-card,
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 48px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+/* Glowing circle decoration (top-right) */
+.plan-card.featured::before,
+.form-card::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26, 184, 240, 0.2), transparent 70%);
+  pointer-events: none;
+}
+
+.about-me {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 40px;
+}
+
+.about-me img {
+  width: 50%;
+  height: 500px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h3 {
+  margin-bottom: 16px;
+}
+
+.about-text p {
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-me {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .about-me img {
+    width: 100%;
+  }
+}
+
+/* ───shared from file base ─── */
+.fg input,
+.fg select,
+.fg textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--text);
+  font-family: "Bebas Neue ", sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.fg input:focus,
+.fg select:focus,
+.fg textarea:focus {
+  border-color: var(--accent);
+  background: rgba(26, 184, 240, 0.06);
+}
+.fg input::placeholder,
+.fg textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.5;
+}
+.fg select option {
+  background: var(--card);
+  color: var(--text);
+}
+.fg textarea {
+  resize: none;
+  height: 92px;
+}
+.fg label {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.fg {
+  margin-bottom: 20px;
+}
+.fg-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ───SECTION WRAPPER ─── */
+.section {
+  padding: 120px 60px;
+}
+
+/* Tag line above every section title */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.tag::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.section-title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.section-title em {
+  font-family: "Bebas Neue ", serif;
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ─── 8. NAVBAR ─── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 52px;
+  backdrop-filter: blur(16px);
+  background: rgba(5, 9, 15, 0.85);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-size: 1.7rem;
+  letter-spacing: 3px;
+  color: var(--text);
+}
+.nav-logo span {
+  color: var(--accent);
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover {
+  color: var(--text);
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Theme toggle switch */
+.theme-toggle {
+  width: 44px;
+  height: 24px;
+  border-radius: 50px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  position: relative;
+}
+.theme-toggle::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.3s;
+}
+[data-theme="light"] .theme-toggle::after {
+  transform: translateX(20px);
+}
+
+/* ─── 9. HERO ─── */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url("public/swimmer5.jpeg") center/cover no-repeat;
+  filter: brightness(0.35) saturate(1.4);
+}
+/* Dark overlay on top of the bg image */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    160deg,
+    rgba(5, 9, 15, 0.9) 0%,
+    rgba(5, 9, 15, 0.4) 40%,
+    rgba(0, 87, 168, 0.25) 70%,
+    rgba(5, 9, 15, 0.8) 100%
+  );
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 24px;
+}
+.hero-title {
+  font-size: clamp(6rem, 16vw, 14rem);
+  color: #fff;
+  text-shadow: 0 0 80px rgba(26, 184, 240, 0.3);
+}
+.hero-title em {
+  font-family: "Bebas Neue ", serif;
+  font-style: italic;
+  color: var(--accent);
+  display: block;
+  font-size: 0.42em;
+  letter-spacing: 8px;
+  text-shadow: none;
+  margin-top: 4px;
+}
+.hero-actions {
+  margin-top: 48px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.35);
+}
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(26, 184, 240, 0.7), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.15);
+  }
+}
+
+/* ─── 10. SLIDING BAND ─── */
+.sliding-band {
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+  background: var(--surface);
+}
+.sliding-track {
+  display: flex;
+  gap: 60px;
+  width: max-content;
+  animation: slidingScroll 18s linear infinite;
+}
+@keyframes slidingScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.sliding-item {
+  color: var(--muted);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.sliding-dot {
+  color: var(--accent);
+  font-size: 1.4rem;
+}
+
+/* About */
+.about-section {
+  background: var(--bg);
+  padding: 120px 20px;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--accent);
+}
+
+.about-content i {
+  color: whitesmoke;
+}
+.about-text {
+  max-width: 700px;
+}
+
+/* ─── 11. PLANS ─── */
+.plans-section {
+  background: var(--surface);
+}
+.plans-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.plan-card:hover {
+  background: rgba(26, 184, 240, 0.07);
+}
+.plan-card + .plan-card {
+  border-left: 1px solid var(--border);
+}
+
+/* Featured (middle) card */
+.plan-card.featured {
+  background: linear-gradient(145deg, #043565, #061f44);
+}
+.plan-card.featured .plan-action {
+  background: var(--accent);
+  color: #05090f;
+  border-color: var(--accent);
+}
+
+.plan-num {
+  font-size: 5rem;
+  color: rgba(26, 184, 240, 0.07);
+  margin-bottom: -10px;
+  display: block;
+}
+.plan-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+}
+.plan-name {
+  font-size: 1.9rem;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.plan-desc {
+  margin-bottom: 32px;
+}
+.plan-price {
+  font-size: 3.8rem;
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+.plan-price sup {
+  font-size: 1.4rem;
+  vertical-align: super;
+}
+.plan-price small {
+  font-size: 1rem;
+  color: var(--muted);
+  font-family: "Bebas Neue ", sans-serif;
+  font-weight: 300;
+}
+.plan-badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: var(--gold);
+  color: #05090f;
+  padding: 5px 14px;
+  border-radius: 60px;
+  font-weight: 700;
+}
+
+/* ─── 12. IMAGE GRID ─── */
+.visual-break {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 360px 360px;
+  gap: 4px;
+  overflow: hidden;
+}
+.vis-cell {
+  position: relative;
+  overflow: hidden;
+  background: #0b1220;
+}
+.vis-cell img {
+  filter: brightness(0.7) saturate(0.9);
+  transition:
+    transform 0.6s,
+    filter 0.6s;
+}
+.vis-cell:hover img {
+  transform: scale(1.05);
+  filter: brightness(0.85) saturate(1.1);
+}
+.vis-cell.tall {
+  grid-row: span 2;
+}
+.vis-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 9, 15, 0.7), transparent 50%);
+}
+.vis-label {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-family: "Bebas Neue ", sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ─── 13. INQUIRY ─── */
+.inquiry-section {
+  background: var(--bg);
+}
+.inquiry-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  align-items: start;
+}
+.inquiry-left .section-title {
+  margin-bottom: 20px;
+}
+.inquiry-left > p {
+  margin-bottom: 40px;
+}
+.trust-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--text);
+}
+.trust-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(26, 184, 240, 0.1);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.form-card::before {
+  top: -80px;
+  right: -80px;
+  width: 280px;
+  height: 280px;
+}
+.submit-btn {
+  width: 100%;
+  padding: 17px;
+  margin-top: 8px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.2rem;
+}
+
+.success-msg {
+  display: none;
+  text-align: center;
+  padding: 40px;
+  color: var(--accent);
+  line-height: 1.8;
+}
+.success-msg .wave-emoji {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* ─── 14. FOOTER ─── */
+footer {
+  padding: 50px 60px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: var(--surface);
+}
+.footer-logo {
+  font-size: 1.6rem;
+  letter-spacing: 3px;
+  color: var(--text);
+}
+.footer-logo span {
+  color: var(--accent);
+}
+.footer-links {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.footer-links a:hover {
+  color: var(--accent);
+}
+.footer-right {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-align: right;
+}
+.footer-right a {
+  color: var(--accent);
+}
+
+/* ─── 15. SCROLL REVEAL ANIMATION ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+.reveal.on {
+  opacity: 1;
+  transform: none;
+}
+.d1 {
+  transition-delay: 0.1s;
+}
+.d2 {
+  transition-delay: 0.2s;
+}
+.d3 {
+  transition-delay: 0.3s;
+}
+.d4 {
+  transition-delay: 0.4s;
+}
+
+/* ─── 16. RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav {
+    padding: 16px 24px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .section {
+    padding: 80px 24px;
+  }
+  .plans-grid {
+    grid-template-columns: 1fr;
+  }
+  .plan-card + .plan-card {
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+  .inquiry-wrap {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .visual-break {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 220px 220px 220px;
+  }
+  .vis-cell.tall {
+    grid-row: span 1;
+  }
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 24px;
+  }
+}
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 4.5rem;
+  }
+  .visual-break {
+    grid-template-columns: 1fr;
+  }
+  .vis-cell.tall {
+    display: none;
+  }
+  .fg-row {
+    grid-template-columns: 1fr;
+  }
+}
